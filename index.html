@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zach Bryan | Software Engineer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="video/background.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Overlay -->
+  <div class="overlay">
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <img src="img/profile.jpg" alt="Zach Bryan" class="profile-img">
+      <h1>Zach Bryan</h1>
+      <p>Software Engineer</p>
+    </section>
+  </div>
+
+	<!-- About Section -->
+	<section id="about" class="content-section">
+	  <h2>About Me</h2>
+
+	  <!-- Photos grid -->
+	  <div class="about-photos">
+		<img src="img/snare-drum.jpg" alt="Zach Bryan with his snare drum" class="about-photo">
+		<img src="img/senior-photo.jpg" alt="Zach Bryan senior photo" class="about-photo">
+		<img src="img/tennis-racket.jpg" alt="Zach Bryan with his tennis racket" class="about-photo">
+	  </div>
+
+	  <p>
+		I’ve been programming and making video games since high school, 
+		where I built projects such as a generative dungeon script, a lobby hosting UI, 
+		and custom VFX systems for games. These projects sparked my passion 
+		for problem-solving and creativity in software development.
+	  </p>
+	  <p>
+		I’m currently studying <strong>Software Engineering</strong> as a freshman at 
+		<strong>Iowa State University</strong>. My goal is always to go above and beyond, 
+		pushing myself to think of new ideas and create innovative solutions.
+	  </p>
+	  <p>
+		What drives me is the challenge of solving problems and building something from nothing. 
+		I’d much rather spend my time thinking, coding, and learning than doing anything else.
+	  </p>
+	  <p>
+		My greatest strength is my ability to <strong>learn quickly</strong>. 
+		If I don’t know how to solve something, I figure it out. I never give up, 
+		because I believe there’s always a solution out there — as long as you keep researching and working at it.
+	  </p>
+	</section>
+
+
+	<!-- Projects Section -->
+	<section id="projects" class="content-section">
+	  <h2>Projects</h2>
+	  <p>Here’s a showcase of some of my favorite projects.</p>
+
+	  <!-- Carousel Container -->
+	  <div class="project-carousel">
+		  <!-- Project slides -->
+		  <div class="project-slide active">
+			  <iframe src="https://www.youtube.com/embed/HYTYebNniuE" title="Generative Dungeon Script" allowfullscreen></iframe>
+			  <p class="project-description">
+				<strong>Generative Dungeon Script</strong><br>
+				This project is a procedural dungeon generator built from scratch. It automatically creates dungeon layouts using pre-defined tiles and logic to ensure halls and rooms connect seamlessly. The system tracks recent turns to avoid collisions and can detect obstacles, allowing it to make intelligent decisions about where to generate the next section. This project demonstrates procedural generation, algorithmic problem-solving, and game design principles.
+			  </p>
+		  </div>
+
+
+		  <div class="project-slide">
+			  <iframe src="https://www.youtube.com/embed/aeBXZ6RhjK4" title="Lobby Hosting UI & Inventory System" allowfullscreen></iframe>
+			  <p class="project-description">
+				<strong>Lobby Hosting UI & Inventory System</strong><br>
+				This project demonstrates a robust user interface for hosting and joining game lobbies, paired with an integrated inventory management system. Despite its simple appearance, the UI handles complex interactions such as item dragging with precise mouse tracking, animated feedback, and sound effects. All player actions are stored in a persistent data system to ensure inventory and lobby states are saved across sessions. The lobby system also synchronizes data between players and servers, enabling seamless multiplayer experiences.
+			  </p>
+		  </div>
+
+
+		  <div class="project-slide">
+			  <iframe src="projects/SSB-Remade/index.html" title="Super Smash Bros Remade – Final Project" allowfullscreen></iframe>
+			  <p class="project-description">
+				<strong>Super Smash Bros Remade – Final Project for Computer Science Principles</strong><br>
+				This project was created in a single week during finals. The assignment was open-ended, allowing the use of AI tools like ChatGPT to help bring ideas to life. I challenged myself to build a fully playable game <strong>without using a traditional game engine</strong>. While much of the code was generated with AI assistance, AI alone could not create a project of this scale. I provided the ideas, solutions, and direction, effectively stitching everything together into a cohesive game. The project took approximately <strong>35 hours</strong> to complete and was a valuable learning experience in both coding and problem-solving.
+			  </p>
+		  </div>
+
+
+
+		  <!-- Carousel Buttons should be INSIDE the carousel -->
+		  <button class="prev">&#10094;</button>
+		  <button class="next">&#10095;</button>
+	  </div>
+
+
+	  
+	</section>
+
+
+	<!-- Contact Section -->
+	<section id="contact" class="content-section">
+	<h2>Contact</h2>
+		<p>
+			Want to get in touch? Reach out to me via email or LinkedIn!
+		</p>
+		<p>
+			Email: <a href="mailto:zj07b@outlook.com">zj07b@outlook.com</a>
+		</p>
+		<p>
+			LinkedIn: <a href="https://www.linkedin.com/in/zach-bryan-b55152385/" target="_blank">Zach Bryan</a>
+		</p>
+	</section>
+
+
+</body>
+</html>
+<script>
+	let slides = document.getElementsByClassName("project-slide");
+	let slideIndex = 0;
+	let autoAdvance = true; // controls auto-sliding
+
+	// Initialize first slide
+	slides[slideIndex].classList.add("active");
+
+	function showSlide(nextIndex) {
+	  if (nextIndex === slideIndex) return; // no change
+
+	  let current = slides[slideIndex];
+	  let next = slides[nextIndex];
+
+	  // Slide out current
+	  current.classList.remove("active");
+	  current.classList.add("prev");
+
+	  // Slide in next
+	  next.classList.remove("prev");
+	  next.classList.add("active");
+
+	  slideIndex = nextIndex;
+
+	  // Reset prev slide after animation
+	  setTimeout(() => {
+	    current.classList.remove("prev");
+	  }, 800);
+
+	  // Refresh iframe if it's a local project
+	  let iframe = next.querySelector("iframe");
+	  if (iframe && !iframe.src.startsWith("https://") && !iframe.src.startsWith("http://")) {
+	    let src = iframe.getAttribute("src");
+	    iframe.setAttribute("src", src); // reload iframe
+	  }
+	}
+
+	// Buttons
+	document.querySelector(".prev").addEventListener("click", function() {
+	  let nextIndex = slideIndex - 1 < 0 ? slides.length - 1 : slideIndex - 1;
+	  showSlide(nextIndex);
+	});
+
+	document.querySelector(".next").addEventListener("click", function() {
+	  let nextIndex = (slideIndex + 1) % slides.length;
+	  showSlide(nextIndex);
+	});
+
+	// Pause auto-advance when hovering over slide
+	for (let slide of slides) {
+	  slide.addEventListener("mouseenter", () => autoAdvance = false);
+	  slide.addEventListener("mouseleave", () => autoAdvance = true);
+	}
+
+	// Auto advance every 10 seconds
+	setInterval(() => {
+	  if (autoAdvance) {
+	    let nextIndex = (slideIndex + 1) % slides.length;
+	    showSlide(nextIndex);
+	  }
+	}, 10000);
+</script>
+

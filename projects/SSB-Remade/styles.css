@@ -1,0 +1,135 @@
+/* styles.css */
+#gameCanvas {
+    display: block;
+    border: 2px solid #000000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1920px;  /* Fixed width */
+    height: 1080px; /* Fixed height */
+    max-width: 1920px; /* Maximum width (optional, but not really needed with fixed dimensions) */
+    max-height: 1080px; /* Maximum height (optional, but not really needed with fixed dimensions) */
+    z-index: 1; /* Ensure it appears above the background but below other elements */
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background for the screen */
+#screen-background {
+    background: url('https://codehs.com/uploads/307dbe81660426a76a3bb137bebca77b') no-repeat center center/cover;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the background stays behind the content */
+}
+
+/* Image Above Player Selection */
+#selection-image {
+    position: absolute;
+    top: -70px; /* Adjust this value to position the image above the player selection */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%; /* Ensure it is sized relative to the player selection */
+    height: auto;
+    z-index: 1002; /* Ensure the image is above the player selection */
+}
+
+/* Player Selection Styles */
+#player-selection {
+    background: linear-gradient(to bottom, #ffffff, #cd3e54); /* Red to black gradient */
+    color: white; /* White text color */
+    border: 2px solid #cccccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    top: 200px; /* Adjust to move it down below the image */
+    z-index: 1001; /* Ensure it appears above the background but below the game canvas */
+}
+
+/* Player Selection Buttons */
+h1, h2 {
+    color: #333333;
+}
+
+.character-btn {
+    background-color: #4f0031;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.character-btn:hover {
+    background-color: #140857;
+}
+
+
+/* Player Screen Styles */
+.player-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://codehs.com/uploads/6ee6f312061df32e29b78313795d7601') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.player-title {
+    font-size: 5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+    margin-bottom: 20px;
+    z-index: 2001; /* Ensure text is in front of other elements */
+}
+
+/* Winner Image - Large */
+.winner-display img {
+    width: 100%;  /* Large image should cover the area but maintain aspect ratio */
+    max-width: 1000px; /* Adjust max size */
+    height: auto;
+    object-fit: contain; /* Ensure the image fits within its container */
+}
+
+/* Confetti Styles */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color, red);
+    top: -10px;
+    animation: fall linear;
+    z-index: 10000; /* Ensure confetti is in front of all other elements */
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.7;
+    }
+}

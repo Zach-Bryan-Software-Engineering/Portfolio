@@ -1,0 +1,230 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: white;
+  scroll-behavior: smooth;
+}
+
+/* Background video */
+#bg-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+/* Overlay for hero section */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh; /* Full screen */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0F0F0F;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Glow line under navbar */
+.navbar::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+  box-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar li {
+  margin: 0 30px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #00BFFF;
+}
+
+/* Hero Section */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.profile-img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 5px solid white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  color: #ddd;
+}
+
+/* Content sections (after hero) */
+.content-section {
+  min-height: 100vh;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.content-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.content-section p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  line-height: 1.6;
+}
+/* About photos grid */
+.about-photos {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* spacing between photos */
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* responsive for smaller screens */
+}
+
+.about-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 3px solid #ccc;
+  border-radius: 8px; /* subtle rounding */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+#projects {
+  background-color: #2E2E2E; /* dark gray */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* full viewport height */
+  padding: 0;
+}
+
+.project-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%; /* full height of section */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.project-slide.prev {
+  opacity: 0;
+  transform: translateX(-100%);
+  z-index: 1;
+}
+
+.project-slide iframe {
+  width: 80%;
+  height: 60%;
+  max-width: 1200px;
+  max-height: 675px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.project-description {
+  font-size: 1.5rem;
+  max-width: 90%;
+  text-align: center;
+  color: white;
+}
+
+/* Buttons */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 3rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 3;
+  border-radius: 4px;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+

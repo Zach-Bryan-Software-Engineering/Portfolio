@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Player Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background for the screen during the player selection -->
+    <div id="screen-background"></div>
+
+    <!-- Image above the player selection -->
+    <img id="selection-image" src="https://codehs.com/uploads/35234fb7648410e2199c21053e542132" alt="Player Selection Image" />
+
+    <!-- Player Selection Section -->
+    <div id="player-selection">
+        <h1>Player Selection</h1>
+        <div id="player1-selection">
+            <h2>Player 1: Choose Your Character</h2>
+            <button class="character-btn" data-player="1" data-character="megaMan">Mega Man</button>
+            <button class="character-btn" data-player="1" data-character="knuckles">Knuckles</button>
+            <button class="character-btn" data-player="1" data-character="kirby">Kirby</button>
+        </div>
+        <div id="player2-selection">
+            <h2>Player 2: Choose Your Character</h2>
+            <button class="character-btn" data-player="2" data-character="megaMan">Mega Man</button>
+            <button class="character-btn" data-player="2" data-character="knuckles">Knuckles</button>
+            <button class="character-btn" data-player="2" data-character="kirby">Kirby</button>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" width="1440" height="810" style="display:none;"></canvas>
+
+    <script src="sound.js"></script>
+
+    <!-- Game-related scripts -->
+    <script src="megaMan.js"></script>
+    <script src="knuckles.js"></script>
+    <script src="inverseFan.js"></script>
+    <script src="superGun.js"></script>
+    <script src="superKick.js"></script>
+    <script src="clock.js"></script>
+    <script src="superDash.js"></script>
+    <script src="tornado.js"></script>
+    <script src="createKillEffect.js"></script>
+    <script src="adminCheatMove.js"></script>
+    <script src="upperCutPunch.js"></script>
+    <script src="sawBlade.js"></script>
+    <script src="superPunch.js"></script>
+    <script src="knockBack.js"></script>
+    <script src="superExplode.js"></script>
+    <script src="playerScreen.js"></script>
+    <script src="checkPosition.js"></script>
+    <script src="health.js"></script>
+    <script src="kirby.js"></script>
+    <script src="gameCore.js"></script>
+    <script src="main.js"></script>
+
+    <!-- Began Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+    
+            // Create the animation container
+            const animationContainer = document.createElement('div');
+            animationContainer.id = 'began-animation';
+            animationContainer.style.position = 'fixed';
+            animationContainer.style.top = '0';
+            animationContainer.style.left = '0';
+            animationContainer.style.width = '100vw';
+            animationContainer.style.height = '100vh';
+            animationContainer.style.backgroundColor = 'black';
+            animationContainer.style.display = 'flex';
+            animationContainer.style.justifyContent = 'center';
+            animationContainer.style.alignItems = 'center';
+            animationContainer.style.zIndex = '200000';
+            animationContainer.style.flexDirection = 'column';
+    
+            // Create the start button
+            const startButton = document.createElement('button');
+            startButton.textContent = 'Start';
+            startButton.style.padding = '10px 20px';
+            startButton.style.fontSize = '2rem';
+            startButton.style.cursor = 'pointer';
+            startButton.style.color = 'black';
+            startButton.style.backgroundColor = 'white';
+            startButton.style.border = 'none';
+            startButton.style.borderRadius = '5px';
+            startButton.style.transition = 'transform 0.2s ease-in-out';
+            startButton.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+            startButton.onmouseover = () => (startButton.style.transform = 'scale(1.1)');
+            startButton.onmouseleave = () => (startButton.style.transform = 'scale(1)');
+            animationContainer.appendChild(startButton);
+    
+            body.appendChild(animationContainer);
+    
+            const createAnimatedText = (text, delay) => {
+                return new Promise((resolve) => {
+                    const textElement = document.createElement('div');
+                    textElement.textContent = text;
+                    textElement.style.color = 'white';
+                    textElement.style.fontSize = '5vw';
+                    textElement.style.fontWeight = 'bold';
+                    textElement.style.textAlign = 'center';
+                    textElement.style.opacity = '0';
+                    textElement.style.transform = 'scale(0.1)';
+                    textElement.style.transition = 'transform 1s ease-out, opacity 1s ease-out';
+    
+                    animationContainer.appendChild(textElement);
+            
+                    setTimeout(() => {
+                        textElement.style.opacity = '1';
+                        textElement.style.transform = 'scale(1)';
+                        playSound('https://codehs.com/uploads/a76c4e1014b64482a0a08e29e0d88e04', 4, .8, false);
+                    }, delay);
+    
+                    setTimeout(() => {
+    
+                        textElement.style.opacity = '0';
+                        setTimeout(() => {
+                            textElement.remove();
+                            resolve();
+                        }, 1000);
+                    }, delay + 3000);
+                });
+            };
+    
+            const showImage = (imgSrc) => {
+                return new Promise((resolve) => {
+                    playSound('https://codehs.com/uploads/6d99cbbadaa74c41b731a3004bd20aec', 300, .8, true);
+            
+                    const imageElement = document.createElement('img');
+                    imageElement.src = imgSrc;
+                    imageElement.style.position = 'absolute';
+                    imageElement.style.top = '0';
+                    imageElement.style.left = '0';
+                    imageElement.style.width = '100%';
+                    imageElement.style.height = '100%';
+                    imageElement.style.objectFit = 'cover'; // Ensures the image fills the screen while maintaining aspect ratio
+                    imageElement.style.opacity = '0';
+                    imageElement.style.transition = 'opacity 2s ease-in-out';
+            
+                    animationContainer.appendChild(imageElement);
+            
+                    setTimeout(() => {
+                        imageElement.style.opacity = '1';
+                    }, 500);
+            
+                    setTimeout(() => {
+                        imageElement.style.opacity = '0';
+                        setTimeout(() => {
+                            imageElement.remove();
+                            resolve();
+                        }, 2000);
+                    }, 5500);
+                });
+            };
+
+    
+            const startAnimation = async () => {
+                // Remove the start button
+                startButton.remove();
+    
+                // Execute the animation sequence
+                await createAnimatedText('From Zach Bryan', 0);
+                await createAnimatedText('A Chat GPT Project', 500);
+                await showImage('https://codehs.com/uploads/65aa99872955ecb443ecabced04f11ca');
+    
+                // Fade out the entire container
+                animationContainer.style.transition = 'opacity 2s ease-in-out';
+                animationContainer.style.opacity = '0';
+                setTimeout(() => {
+                    animationContainer.remove();
+                }, 2000);
+            };
+    
+            // Start animation on button click
+            startButton.addEventListener('click', startAnimation);
+        });
+    </script>
+</body>
+</html>
