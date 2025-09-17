@@ -227,4 +227,29 @@ html, body {
 .prev { left: 20px; }
 .next { right: 20px; }
 
+.iframe-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;   /* optional cap */
+  aspect-ratio: 16 / 9; /* lock to 1920x1080 ratio */
+  margin: 0 auto;
+  overflow: hidden;   /* hide scrollbars */
+  background: #000;   /* fallback background */
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+
+  /* force scaling to fill container */
+  object-fit: cover;
+}
+
+
+
 
